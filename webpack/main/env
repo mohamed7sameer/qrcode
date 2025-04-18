@@ -1,7 +1,7 @@
 APP_NAME='Qrcode'
-APP_ENV=local
+APP_ENV=public
 APP_KEY=base64:MHBAUFxJBost1+QPGcZnaBuYd1MwT0I6yWGCno+x+Fg=
-APP_DEBUG=true
+APP_DEBUG=false
 APP_TIMEZONE=UTC
 APP_URL="https://rawanniversary.prismafoodsegypt.com"
 
@@ -67,7 +67,7 @@ VITE_APP_NAME="${APP_NAME}"
 NOVA_LICENSE_KEY="Ujk13p9DqEwEu28hMQhXHFFp8MHe3kfC8P2fP35wPj5g76VqH8"
 NOVA_GUARD="admin"
 
-Qrcode_MODE = "demo" 
+Qrcode_MODE = "live" 
 QR_CODE_DEMO_URL = "https://qrcode.test/qrcode/scan/"
 QR_CODE_URL = "https://rawanniversary.prismafoodsegypt.com/qrcode/scan/"
 
