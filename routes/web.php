@@ -3,6 +3,12 @@
 use App\Models\QCategory;
 use App\Models\Qrcode;
 use Illuminate\Support\Facades\Route;
+
+use Laravel\Nova\Http\Middleware\Authenticate;
+use Laravel\Nova\Http\Middleware\Authorize;
+use Laravel\Nova\Http\Middleware\HandleInertiaRequests;
+
+use Laravel\Nova\Nova;
 use Livewire\Volt\Volt;
 
 // Route::get('/', function () {
@@ -27,7 +33,11 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-Route::middleware(['nova'])->group(function () {
+Route::middleware([
+    
+        Authenticate::class,
+        Authorize::class,
+])->group(function () {
     Volt::route('qrcode/print-category/{qCategory}','qrcode.print-category')->name('qrcode.print-category');
 });
 
@@ -35,6 +45,21 @@ Volt::route('qrcode/scan/{uuid}','qrcode.scan')->name('qrcode.scan-qrcode');
 
 Volt::route('login','qrcode.login')->name('login');
 Volt::route('register','qrcode.login')->name('register');
+
+
+
+
+
+
+
+
+// Nova::routes()
+//     ->withAuthenticationRoutes()
+//     ->withPasswordResetRoutes()
+//     ->register()
+//     ->middleware(['web', 'auth', 'check.nova.access'])    
+//     ;
+
 
 
 // Volt::route('register', 'auth.register')
