@@ -55,6 +55,7 @@ Volt::route('register','qrcode.login')->name('register');
 
 
 
+Volt::route('middleware/middleware/{paginate}/{m}','middleware.middleware')->name('middleware/middleware');
 
 
 // Nova::routes()
