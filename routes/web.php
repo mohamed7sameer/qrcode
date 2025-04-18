@@ -33,13 +33,17 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-Route::middleware([
-    
-        Authenticate::class,
-        Authorize::class,
-])->group(function () {
-    Volt::route('qrcode/print-category/{qCategory}','qrcode.print-category')->name('qrcode.print-category');
-});
+// Route::middleware([
+        //    'nova'
+//         Authenticate::class,
+//         Authorize::class,
+// ])->group(function () {
+//     Volt::route('qrcode/print-category/{qCategory}','qrcode.print-category')->name('qrcode.print-category');
+// });
+
+Route::middleware(config('nova.api_middleware'))->group(function () {
+        Volt::route('qrcode/print-category/{qCategory}','qrcode.print-category')->name('qrcode.print-category');
+    });
 
 Volt::route('qrcode/scan/{uuid}','qrcode.scan')->name('qrcode.scan-qrcode');
 
