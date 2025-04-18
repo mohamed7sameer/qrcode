@@ -26,7 +26,11 @@ class extends Component {
         $this->qrcode = Qrcode::where([
             'uuid'=> $uuid,
             'status' => true
-        ])->firstOrFail();
+        ])->first();
+
+        if(! $this->qrcode){
+            $this->redirectIntended(route('login', absolute: false), navigate: true);
+        }
 
         if(auth()->check())
         {
@@ -61,7 +65,7 @@ class extends Component {
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
-            'phone' => ['required', 'string', 'lowercase', 'max:255'],
+            'phone' => ['required', 'string', 'regex:/^0\d{10}$/'],
         ]);
 
         if(User::where('phone', $validated['phone'])->exists())
@@ -86,7 +90,7 @@ class extends Component {
 }; ?>
 
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Create an account')" :description="__('Enter your details below to create your account')" />
+    <x-auth-header :title="__('Coin Earnings')" :description="__('Track your earned coins and how they add up over time')" />
 
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />

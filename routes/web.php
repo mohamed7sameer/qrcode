@@ -17,7 +17,8 @@ Route::middleware(['auth'])->group(function () {
     // Route::redirect('settings', 'settings/profile');
     Route::redirect('dashboard', '/')->name('dashboard');
     Volt::route('/','qrcode.profile')->name('home');
-
+    
+    Volt::route('/top-users','qrcode.top-ten')->name('top.users');
     // Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
     // Volt::route('settings/password', 'settings.password')->name('settings.password');
     // Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');

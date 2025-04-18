@@ -17,9 +17,22 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
         
+        Nova::footer(function ($request) {
+return <<<"HTML"
+    <div class="text-xs text-gray-500 text-center p-3">
+        &copy; 2025 <strong><a href="https://firstmarkets.com/" target="_BLANK">First Markets</a></strong>. All rights reserved.
+        
+    </div>
+
+HTML;
+        });
+    
 
         //
     }
+
+
+    
 
     /**
      * Register the configurations for Laravel Fortify.

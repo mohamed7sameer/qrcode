@@ -5,12 +5,20 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
 use Livewire\Volt\Component;
+use Illuminate\Http\UploadedFile;
+
+use Livewire\WithFileUploads;
+
 
 new class extends Component {
     public string $name = '';
     public string $email = '';
     public string $phone = '';
     public string $points = '';
+    public  $avatarURL;
+    public  $avatar;
+
+    use WithFileUploads;
 
     /**
      * Mount the component.
@@ -21,7 +29,20 @@ new class extends Component {
         $this->email = Auth::user()->email;
         $this->phone =  Auth::user()->phone;
         $this->points =  Auth::user()->points;
+        $this->avatar = Auth::user()->avatar;
+        $this->avatarURL = $this->avatar;
     }   
+
+
+    public function updatedAvatar($value)
+    {
+        $this->validate([
+            'avatar' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+        ]);
+        $this->avatarURL = $value->temporaryUrl();
+
+    }
+    
 
     /**
      * Update the profile information for the currently authenticated user.
@@ -32,26 +53,35 @@ new class extends Component {
 
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
-
+            'avatar' => ['required'],
             'email' => [
                 'required',
                 'string',
                 'lowercase',
                 'email',
                 'max:255',
-                Rule::unique(User::class)->ignore($user->id)
             ],
         ]);
 
-        $user->fill($validated);
+        // $user->fill($validated);
 
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
 
-        $user->save();
+        
+        if ($this->avatar instanceof UploadedFile) {
 
-        $this->dispatch('profile-updated', name: $user->name);
+            $validated['avatar'] = $this->avatar->store('avatars', 'public');
+        }
+
+
+        $user->update($validated);
+
+
+        // $user->save();
+
+        // $this->dispatch('profile-updated', name: $user->name);
     }
 
     /**
@@ -75,7 +105,11 @@ new class extends Component {
 
 <section class="w-full">
     @include('partials.settings-heading')
-
+    <style>
+        /* body{
+            background: url('{{ asset('assets/bg.png') }}') center center;
+        } */
+    </style>
     <x-settings.layout :heading="__('Profile')" :subheading="__('Update your name and email address')">
         <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
 
@@ -106,6 +140,11 @@ new class extends Component {
             </div>
 
             <flux:input wire:model="phone" :label="__('Phone')" readonly  />
+
+            <div>
+                <flux:input wire:model="avatar" :label="__('avatar')" type="file" name="avatar"   />
+                <img src="{{ $avatarURL }}" alt="avatar" class="w-50" />
+            </div>
 
             <div class="flex items-center gap-4">
                 <div class="flex items-center justify-end">

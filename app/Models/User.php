@@ -22,7 +22,8 @@ class User extends Authenticatable
         'name',
         'phone',
         'email',
-        'password',
+        // 'password',
+        'avatar'
     ];
 
     /**
@@ -66,5 +67,17 @@ class User extends Authenticatable
         return $this->belongsToMany(Qrcode::class,'qrcodes_users','user_id','qrcode_id');
     }
 
+
+    public function getAvatarAttribute()
+    {
+        $avatar = $this->attributes['avatar'] ?? null; // الوصول مباشرة إلى البيانات المخزنة
+        if ($avatar && Str::startsWith($avatar, 'http')) {
+            return $avatar;
+        }
+        return $avatar ? asset("storage/{$avatar}") : 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=7F9CF5&background=EBF4FF';
+    }
+
     
 }
+
+
