@@ -73,12 +73,13 @@ new class extends Component {
                     </div>
                   </div>
                   <div class="flex flex-col justify-center items-center">
-                    <flux:icon.trophy class="size-12" />
+                    <flux:icon.trophy class="size-12" /> 
                     <h1>{{auth()->user()->points}}</h1>
                   </div>
             </div>
             
           </div>
+          {{-- hello  world--}}
 
     </div>
     
