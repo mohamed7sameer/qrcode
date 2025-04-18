@@ -98,7 +98,7 @@ class extends Component {
         <!-- Phone -->
         <flux:input
             wire:model="phone"
-            :label="__(key: 'Phone address')"
+            :label="__(key: 'Phone Number')"
             type="text"
             required
             autocomplete="phone"

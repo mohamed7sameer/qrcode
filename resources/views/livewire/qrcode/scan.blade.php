@@ -22,15 +22,21 @@ class extends Component {
 
     public function mount($uuid): void
     {
+        $existQrcode = Qrcode::where([
+            'uuid'=> $uuid,
+            'status' => true
+        ])->exists();
+
+        if(!$existQrcode){
+            $this->redirectIntended(route('login', absolute: false), navigate: true);
+        }
         
         $this->qrcode = Qrcode::where([
             'uuid'=> $uuid,
             'status' => true
         ])->first();
 
-        if(! $this->qrcode){
-            $this->redirectIntended(route('login', absolute: false), navigate: true);
-        }
+        
 
         if(auth()->check())
         {
@@ -120,7 +126,7 @@ class extends Component {
         <!-- Phone -->
         <flux:input
             wire:model="phone"
-            :label="__(key: 'Phone address')"
+            :label="__(key: 'Phone Number')"
             type="text"
             required
             autocomplete="phone"
