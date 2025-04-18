@@ -20,7 +20,7 @@ class extends Component {
 
     public $qrcode;
 
-    public function mount($uuid): void
+    public function mount($uuid)
     {
         $existQrcode = Qrcode::where([
             'uuid'=> $uuid,
@@ -28,7 +28,10 @@ class extends Component {
         ])->exists();
 
         if(!$existQrcode){
-            $this->redirectIntended(route('login', absolute: false), navigate: true);
+            // $this->redirectIntended(route('login', absolute: false), navigate: true);
+            
+             return $this->redirectIntended(route('login', absolute: true), navigate: false);
+
         }
         
         $this->qrcode = Qrcode::where([

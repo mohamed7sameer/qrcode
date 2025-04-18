@@ -20,8 +20,12 @@ class extends Component {
 
     
 
-    public function mount(): void
+    public function mount()
     {
+
+        if(auth()->check()){
+            return $this->redirectIntended(route('home', absolute: true), navigate: false);
+        }
 
     }
 
