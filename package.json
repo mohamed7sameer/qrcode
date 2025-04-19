@@ -3,7 +3,9 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "ms": "node build-and-zip.js"
+
     },
     "dependencies": {
         "@tailwindcss/vite": "^4.0.7",
@@ -18,5 +20,8 @@
         "@rollup/rollup-linux-x64-gnu": "4.9.5",
         "@tailwindcss/oxide-linux-x64-gnu": "^4.0.1",
         "lightningcss-linux-x64-gnu": "^1.29.1"
+    },
+    "devDependencies": {
+        "archiver": "^7.0.1"
     }
 }
