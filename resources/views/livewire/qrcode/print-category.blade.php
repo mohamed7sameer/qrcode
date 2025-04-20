@@ -3,15 +3,62 @@
 use Livewire\Volt\Component;
 use Livewire\Attributes\{Layout};
 use App\Models\QCategory ;
+use Livewire\WithPagination;
+
+
 new
 #[Layout('components.layouts.app-qrcode')]
 class extends Component {
 
-    public $qrcodes;
-    public function mount(QCategory $qCategory)
+
+    use WithPagination;
+
+
+    // public $qrcodes;
+    public $qrcodes_id;
+    // public function mount(QCategory $qCategory)
+    public function mount($qCategory)
     {
-        $this->qrcodes = $qCategory->qrcodes;
+        
+        // $this->qrcodes = $qCategory->qrcodes;
+        $this->qrcodes_id = $qCategory;
+
+        $this->js(
+<<<"JAVASCRIPT"
+onload = ()=>{
+    window.print();
+}
+JAVASCRIPT
+);
+
+
     }
+
+    public function hydrate()
+    {
+$this->js(
+<<<"JAVASCRIPT"
+onload = ()=>{
+    setTimeout(() => {
+        window.print();    
+    }, 1000);
+    
+}
+JAVASCRIPT
+);
+    }
+
+
+    public function with(): array
+    {
+
+        return [
+            'qrcodes' => QCategory::findOrFail($this->qrcodes_id)?->qrcodes()?->paginate(5000)
+        ];
+    }
+
+
+
 }; ?>
 
 <div>
@@ -31,6 +78,7 @@ class extends Component {
         <div class="flex flex-wrap  gap-0 items-center justify-center">
             
             @foreach ($qrcodes as $qrcode)
+                <h1>{{$qrcode->id}}</h1>
                 {{-- <div class="w-[472px] h-[413px] relative"> --}}
                 <div class="w-[3.9cm] h-[3.5cm] relative">
                     <img src="{{ asset('assets/print_image2.png') }}" class="w-full h-full">
@@ -44,11 +92,13 @@ class extends Component {
                 </div> --}}
             @endforeach
         </div>
+        <div>
+            {{ $qrcodes->links() }}
+
+        </div>
     @endif
 
     <script>
-        onload = ()=>{
-            window.print();
-        }
+        
     </script>
 </div>
