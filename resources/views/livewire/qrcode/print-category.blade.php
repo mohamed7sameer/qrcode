@@ -16,12 +16,17 @@ class extends Component {
 
     // public $qrcodes;
     public $qrcodes_id;
+    public $paginate = 5000;
     // public function mount(QCategory $qCategory)
-    public function mount($qCategory)
+    public function mount($qCategory, Request $request)
     {
         
         // $this->qrcodes = $qCategory->qrcodes;
         $this->qrcodes_id = $qCategory;
+
+        if($request->paginate){
+            $this->paginate = $request->paginate ;
+        }
 
         $this->js(
 <<<"JAVASCRIPT"
@@ -53,7 +58,7 @@ JAVASCRIPT
     {
 
         return [
-            'qrcodes' => QCategory::findOrFail($this->qrcodes_id)?->qrcodes()?->paginate(5000)
+            'qrcodes' => QCategory::findOrFail($this->qrcodes_id)?->qrcodes()?->paginate($this->paginate)
         ];
     }
 
@@ -78,7 +83,7 @@ JAVASCRIPT
         <div class="flex flex-wrap  gap-0 items-center justify-center">
             
             @foreach ($qrcodes as $qrcode)
-                <h1>{{$qrcode->id}}</h1>
+                {{-- <h1>{{$qrcode->id}}</h1> --}}
                 {{-- <div class="w-[472px] h-[413px] relative"> --}}
                 <div class="w-[3.9cm] h-[3.5cm] relative">
                     <img src="{{ asset('assets/print_image2.png') }}" class="w-full h-full">
