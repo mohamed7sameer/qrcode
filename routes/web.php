@@ -50,6 +50,9 @@ Volt::route('qrcode/scan/{uuid}','qrcode.scan')->name('qrcode.scan-qrcode');
 Volt::route('login','qrcode.login')->name('login');
 Volt::route('register','qrcode.login')->name('register');
 
+Route::post('logout', App\Livewire\Actions\Logout::class)
+    ->name('logout');
+
 
 
 

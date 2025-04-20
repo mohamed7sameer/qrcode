@@ -14,8 +14,8 @@
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
             <a href="/" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
-                {{-- <x-app-logo /> --}}
-                RAWANNIVERSARY
+                <x-app-logo />
+                {{-- RAWANNIVERSARY --}}
             </a>
 
             <flux:navlist variant="outline">
@@ -58,8 +58,31 @@
                         </div>
                     </flux:menu.radio.group>
 
+
+
+
+
+
+
+                    <flux:menu.separator />
+
+                    {{-- <flux:menu.radio.group>
+                        <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
+                    </flux:menu.radio.group> --}}
+
+                    <flux:menu.separator />
+
+                    <form method="POST" action="{{ route('logout') }}" class="w-full">
+                        @csrf
+                        <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full">
+                            {{ __('Log Out') }}
+                        </flux:menu.item>
+                    </form>
                     
-                    
+
+
+
+
 
                     
                 </flux:menu>
@@ -99,6 +122,29 @@
                     </flux:menu.radio.group>
 
                     
+
+
+
+
+                    <flux:menu.separator />
+
+                    {{-- <flux:menu.radio.group>
+                        <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
+                    </flux:menu.radio.group> --}}
+
+                    <flux:menu.separator />
+
+                    <form method="POST" action="{{ route('logout') }}" class="w-full">
+                        @csrf
+                        <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full">
+                            {{ __('Log Out') }}
+                        </flux:menu.item>
+                    </form>
+
+
+
+
+
 
                     
 
