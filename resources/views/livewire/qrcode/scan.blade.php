@@ -34,6 +34,7 @@ class extends Component {
 
         }
         
+        
         $this->qrcode = Qrcode::where([
             'uuid'=> $uuid,
             'status' => true

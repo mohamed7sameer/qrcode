@@ -42,10 +42,12 @@ Route::middleware(['auth'])->group(function () {
 // });
 
 Route::middleware(config('nova.api_middleware'))->group(function () {
-        Volt::route('qrcode/print-category/{qCategory}','qrcode.print-category')->name('qrcode.print-category');
-    });
+    Volt::route('qrcode/print-category/{qCategory}','qrcode.print-category')->name('qrcode.print-category');
+    Volt::route('qrcode/autoloadproducts/{qCategory}','qrcode.autoloadproducts')->name('qrcode.print-autoloadproducts');
+});
 
 Volt::route('qrcode/scan/{uuid}','qrcode.scan')->name('qrcode.scan-qrcode');
+
 
 Volt::route('login','qrcode.login')->name('login');
 Volt::route('register','qrcode.login')->name('register');
@@ -57,6 +59,8 @@ Route::post('logout', App\Livewire\Actions\Logout::class)
 
 
 
+
+    
 
 Volt::route('middleware/middleware/{paginate}/{m}','middleware.middleware')->name('middleware/middleware');
 
