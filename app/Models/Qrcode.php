@@ -35,7 +35,7 @@ class Qrcode extends Model
         return $this->belongsTo(QCategory::class);
     }
 
-
+   /* 00 */
     public function getQrcodeSvgAttribute(){
         $qrcodeMode = config('qrcode.mode');
         $data = config('qrcode.' . $qrcodeMode . '.url'). $this->uuid;
@@ -48,7 +48,8 @@ class Qrcode extends Model
             data: $data,
             encoding: new Encoding('UTF-8'),
             errorCorrectionLevel: ErrorCorrectionLevel::High,
-            size: config('qrcode.width'),
+            // size: config('qrcode.width'),
+            size: 500,
             margin: 1,
             // margin: 0,
             // roundBlockSizeMode: RoundBlockSizeMode::Margin,

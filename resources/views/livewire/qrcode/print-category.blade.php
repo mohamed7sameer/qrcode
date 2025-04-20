@@ -33,8 +33,9 @@ class extends Component {
             @foreach ($qrcodes as $qrcode)
                 {{-- <div class="w-[472px] h-[413px] relative"> --}}
                 <div class="w-[3.9cm] h-[3.5cm] relative">
-                    <img src="{{ asset('assets/print_image.png') }}" class="w-full h-full">
-                    <div class="mo-svg-qucode w-[2cm] h-[2cm] absolute left-[.2cm] top-[.4cm] bg-red">
+                    <img src="{{ asset('assets/print_image2.png') }}" class="w-full h-full">
+                    {{-- <div class="mo-svg-qucode w-[2cm] h-[2cm] absolute left-[.2cm] top-[.4cm] bg-red"> --}}
+                    <div class="mo-svg-qucode w-[1.5cm] h-[1.5cm] absolute left-[.5cm] top-[.8cm] bg-red">
                         {!! $qrcode->qrcode_svg !!}
                     </div>
                 </div>
