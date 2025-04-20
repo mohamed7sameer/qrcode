@@ -8,6 +8,7 @@ use Laravel\Nova\Http\Middleware\Authenticate;
 use Laravel\Nova\Http\Middleware\Authorize;
 use Laravel\Nova\Http\Middleware\HandleInertiaRequests;
 
+
 use Laravel\Nova\Nova;
 use Livewire\Volt\Volt;
 

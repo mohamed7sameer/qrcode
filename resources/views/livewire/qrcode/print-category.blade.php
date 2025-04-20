@@ -4,7 +4,7 @@ use Livewire\Volt\Component;
 use Livewire\Attributes\{Layout};
 use App\Models\QCategory ;
 use Livewire\WithPagination;
-
+use Illuminate\Http\Request;
 
 new
 #[Layout('components.layouts.app-qrcode')]
@@ -24,7 +24,7 @@ class extends Component {
         // $this->qrcodes = $qCategory->qrcodes;
         $this->qrcodes_id = $qCategory;
 
-        if($request->paginate){
+        if($request->has('paginate')){
             $this->paginate = $request->paginate ;
         }
 
@@ -78,6 +78,13 @@ JAVASCRIPT
         .mo-svg-qucode svg path{
             fill: white;
         } */
+
+        @media print {    
+            .no-print{
+                display: none !important;
+            }
+        }
+
     </style>
     @if(count($qrcodes))
         <div class="flex flex-wrap  gap-0 items-center justify-center">
@@ -97,7 +104,7 @@ JAVASCRIPT
                 </div> --}}
             @endforeach
         </div>
-        <div>
+        <div class="no-print">
             {{ $qrcodes->links() }}
 
         </div>
