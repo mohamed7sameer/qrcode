@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QCategoryController;
 use App\Models\QCategory;
 use App\Models\Qrcode;
 use Illuminate\Support\Facades\Route;
@@ -43,8 +44,10 @@ Route::middleware(['auth'])->group(function () {
 // });
 
 Route::middleware(config('nova.api_middleware'))->group(function () {
-    Volt::route('qrcode/print-category/{qCategory}','qrcode.print-category')->name('qrcode.print-category');
+    // Volt::route('qrcode/print-category/{qCategory}','qrcode.print-category')->name('qrcode.print-category');
     Volt::route('qrcode/autoloadproducts/{qCategory}','qrcode.autoloadproducts')->name('qrcode.print-autoloadproducts');
+    Route::get('qrcode/print-category/{qCategory}', [QCategoryController::class, 'iindex'])->name('qrcode.print-category');
+
 });
 
 Volt::route('qrcode/scan/{uuid}','qrcode.scan')->name('qrcode.scan-qrcode');
@@ -64,6 +67,8 @@ Route::post('logout', App\Livewire\Actions\Logout::class)
     
 
 Volt::route('middleware/middleware/{paginate}/{m}','middleware.middleware')->name('middleware/middleware');
+
+
 
 
 // Nova::routes()

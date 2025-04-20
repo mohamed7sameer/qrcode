@@ -5,9 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\QCategory;
 use App\Http\Requests\StoreQCategoryRequest;
 use App\Http\Requests\UpdateQCategoryRequest;
+use Illuminate\Http\Request;
 
 class QCategoryController extends Controller
 {
+
+
+    public function iindex($qCategoryId, Request $request)
+    {
+        $qCategory = QCategory::findOrFail($qCategoryId);
+
+        $paginate = $request->has('paginate') ? $request->paginate : 1;
+        $qrcodes =  $qCategory->qrcodes()->paginate($paginate) ;
+        
+        return view('livewire.qrcode.view_paginate', compact('qrcodes','paginate'));
+    }
+
+
+
     /**
      * Display a listing of the resource.
      */
