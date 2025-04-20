@@ -4,7 +4,8 @@ import path from "path";
 import archiver from "archiver";
 
 const BUILD_DIR = path.join(process.cwd(), "public", "build");
-const ZIP_FILE = path.join(process.cwd(), "build.zip");
+const ZIP_FILE = path.join(process.cwd(), "public", "build.zip");
+
 
 function runCommand(cmd) {
   console.log(`> ${cmd}`);
