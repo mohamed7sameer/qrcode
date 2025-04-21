@@ -9,7 +9,13 @@
 </head>
 <body class="text-center">
 
-    
+    <h1 class="text-center text-7xl mb-10 no-print">
+        @if (request()->has('page'))
+            Page : {{ request()->page }}
+        @else
+            Page : 1
+        @endif
+    </h1>
     
     <style>
         .mo-svg-qucode svg {
