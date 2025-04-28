@@ -15,6 +15,7 @@ new class extends Component {
     public string $email = '';
     public string $phone = '';
     public string $points = '';
+    public  $age;
     public  $avatarURL;
     public  $avatar;
 
@@ -31,6 +32,7 @@ new class extends Component {
         $this->points =  Auth::user()->points;
         $this->avatar = Auth::user()->avatar;
         $this->avatarURL = $this->avatar;
+        $this->age = Auth::user()->age;
     }   
 
 
@@ -51,23 +53,27 @@ new class extends Component {
     {
         $user = Auth::user();
 
+
+
+
+        
+        
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'avatar' => ['required'],
-            // 'email' => [
-            //     'required',
-            //     'string',
-            //     'lowercase',
-            //     'email',
-            //     'max:255',
-            // ],
-        ]);
+            'age' => ['required', 'numeric'],
+            
+        ],[
+            
+            'name.required' => __('validation.required', ['attribute' => 'الإسم']),
+            'name.string' => __('validation.string', ['attribute' => 'الإسم']),
+            'name.max' => __('validation.max.string', ['attribute' => 'الإسم', 'max' => 255]),
+            'avatar.required' => __('validation.required', ['attribute' => 'الصورة']), // << أضفت الرسالة هنا
+            'age.required' => __('validation.required', ['attribute' => 'العمر']),
+            'age.numeric' => __('validation.numeric', ['attribute' => 'العمر']),
 
-        // $user->fill($validated);
-
-        // if ($user->isDirty('email')) {
-        //     $user->email_verified_at = null;
-        // }
+        ]
+    );
 
         
         if ($this->avatar instanceof UploadedFile) {
@@ -79,9 +85,9 @@ new class extends Component {
         $user->update($validated);
 
 
-        // $user->save();
+        
 
-        // $this->dispatch('profile-updated', name: $user->name);
+        $this->dispatch('profile-updated', name: $user->name);
     }
 
     /**
@@ -104,60 +110,49 @@ new class extends Component {
 }; ?>
 
 <section class="w-full">
-    @include('partials.settings-heading')
-    <style>
-        /* body{
-            background: url('{{ asset('assets/bg.png') }}') center center;
-        } */
-    </style>
-    <x-settings.layout :heading="__('Profile')" :subheading="__('Update your name and email address')">
+
+
+
+
+
+    <div class="px-6 py-4 bg-white rounded-xl mx-4 my-6 p-4 shadow-lg mb-2">
+
+        @include('partials.settings-heading')
+    <x-settings.layout >
         <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
 
             <flux:input wire:model="points" :label="__('Points')"  readonly  />
 
             <flux:input wire:model="name" :label="__('Name')" type="text" required autofocus autocomplete="name" />
 
-            <div>
-                {{-- <flux:input wire:model="email" :label="__('Email')" type="email" required autocomplete="email" /> --}}
-                <flux:input wire:model="email" :label="__('Email')" type="email" readonly/>
+            <flux:input wire:model="age" :label="__('Age')" type="text" required autofocus autocomplete="Age" />
 
-                @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail &&! auth()->user()->hasVerifiedEmail())
-                    <div>
-                        <flux:text class="mt-4">
-                            {{ __('Your email address is unverified.') }}
-
-                            <flux:link class="text-sm cursor-pointer" wire:click.prevent="resendVerificationNotification">
-                                {{ __('Click here to re-send the verification email.') }}
-                            </flux:link>
-                        </flux:text>
-
-                        @if (session('status') === 'verification-link-sent')
-                            <flux:text class="mt-2 font-medium !dark:text-green-400 !text-green-600">
-                                {{ __('A new verification link has been sent to your email address.') }}
-                            </flux:text>
-                        @endif
-                    </div>
-                @endif
-            </div>
+            <flux:input wire:model="email" :label="__('Email')" type="email" readonly/>
 
             <flux:input wire:model="phone" :label="__('Phone')" readonly  />
 
             <div>
                 <flux:input wire:model="avatar" :label="__('avatar')" type="file" name="avatar"   />
-                <img src="{{ $avatarURL }}" alt="avatar" class="w-50" />
+                <img src="{{ $avatarURL }}" alt="avatar" class="w-50 my-5  drop-shadow-xl drop-shadow-black" />
             </div>
 
             <div class="flex items-center gap-4">
                 <div class="flex items-center justify-end">
                     <flux:button variant="primary" type="submit" class="w-full">{{ __('Save') }}</flux:button>
                 </div>
-
-                <x-action-message class="me-3" on="profile-updated">
-                    {{ __('Saved.') }}
-                </x-action-message>
             </div>
+            <x-action-message class="me-3" on="profile-updated">
+                <p class=" bg-green-600 text-white p-5" >__('saved')</p>
+            </x-action-message>
         </form>
 
         
     </x-settings.layout>
+
+    </div>
+
+
+
+    
+    
 </section>

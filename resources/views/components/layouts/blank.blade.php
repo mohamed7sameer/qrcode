@@ -1,39 +1,28 @@
-<x-layouts.app.sidebar :title="$title ?? null">
-    <flux:main>
-
-
-
-    <div class="pt-0 pb-4 px-6 text-center">
-        <div class="w-70 max-w-full flex justify-center m-auto text-shadow-lg " >
-            <img src="{{ asset('assets/images/chips.png') }}" class="w-full  drop-shadow-xl drop-shadow-black" >
-        </div>            
-        <p class="text-cyan-600 my-5 text-3xl text-shadow-sm text-shadow-cyan-300 font-bold">الذكرى السنوية الثامنة</p>
-    </div>
-
-
-
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="">
+    <head>
+        
+        @include('partials.head')
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+        
+        <style>
+            
+        .rubik-400 {
+        font-family: "Rubik", sans-serif;
+        font-optical-sizing: auto;
+        /* font-weight: 400; */
+        font-style: normal;
+        }
+        </style>
+    </head>
+    <body class="rubik-400">
         {{ $slot }}
 
 
 
-
-
-        <div class="bg-cyan-600 text-white rounded-xl mx-4 my-6 p-4 shadow-lg mb-2">
-            <h2 class="text-center font-semibold text-xl mb-5">الجوائز المتوفرة</h2>
-            <div class="flex justify-around items-center text-center">
-                <div class="flex flex-col items-center">
-                    <img src="{{ asset('assets/images/playstition5.png') }} " class="w-25">    
-                    <p class="mt-5 text-2md font-medium">بلايستيشن 5</p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <img src="{{ asset('assets/images/iphone.png') }}" class="w-25">    
-                    <p class="mt-5 text-2md font-medium">آيفون 16</p>
-                </div>
-            </div>
-        </div>
-
-        
-        <footer class="mx-[-24px] mb-[-24px] mt-6">
+        <footer>
             <div class="bg-cyan-600 text-white py-5 px-4">
                 <div class="container mx-auto flex flex-col items-center text-center space-y-6">
     
@@ -44,6 +33,28 @@
                     
     
                     
+    
+                    {{-- <div class="space-y-3 text-sm md:text-base pt-4">
+                        <div class="flex items-center justify-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span>5700</span>
+                        </div>
+                        <div class="flex items-center justify-center space-x-2">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <a href="mailto:info@prismafoodsegypt.com" class="hover:underline">info@prismafoodsegypt.com</a>
+                        </div>
+                        <div class="flex items-center justify-center space-x-2 max-w-md mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                               <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                               <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>IDG Complex, Clusters A9-A12, Industrial Zone, 6th Of October, Giza, Egypt</span>
+                        </div>
+                    </div> --}}
     
                     <div class="flex justify-center space-x-4 pt-4">
                         <a target="_BLNAK" href="https://www.facebook.com/rawkettlecookedpotatoes/?_rdc=2&_rdr" aria-label="Facebook" class="bg-white/20 hover:bg-white/30 rounded-full p-3 transition duration-300">
@@ -80,16 +91,10 @@
         </footer>
 
 
+        @fluxScripts
+    </body>
+</html>
 
 
 
 
-
-
-    </flux:main>
-
-
-    
-
-
-</x-layouts.app.sidebar>

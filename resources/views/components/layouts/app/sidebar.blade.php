@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl" >
     <head>
         @include('partials.head')
     </head>
-    <body class="min-h-screen bg-white dark:bg-zinc-800">
+    <body class="min-h-screen bg-gray-200 rubik-400">
         
 
 
 
 
 
-        <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+        <flux:sidebar sticky stashable class="border-e border-cyan-600 bg-cyan-700 dark ">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
             <a href="/" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
@@ -29,7 +29,7 @@
             <flux:spacer />
 
             
-
+{{-- 
             <!-- Desktop User Menu -->
             <flux:dropdown position="bottom" align="start">
                 <flux:profile
@@ -66,9 +66,9 @@
 
                     <flux:menu.separator />
 
-                    {{-- <flux:menu.radio.group>
+                    <flux:menu.radio.group>
                         <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
-                    </flux:menu.radio.group> --}}
+                    </flux:menu.radio.group>
 
                     <flux:menu.separator />
 
@@ -86,7 +86,10 @@
 
                     
                 </flux:menu>
-            </flux:dropdown>
+            </flux:dropdown> --}}
+
+
+
         </flux:sidebar>
 
         <!-- Mobile User Menu -->
@@ -126,7 +129,7 @@
 
 
 
-                    <flux:menu.separator />
+                    {{-- <flux:menu.separator /> --}}
 
                     {{-- <flux:menu.radio.group>
                         <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
@@ -161,6 +164,18 @@
 
 
         {{ $slot }}
+
+
+
+
+
+
+        
+
+
+
+
+
 
         @fluxScripts
     </body>
