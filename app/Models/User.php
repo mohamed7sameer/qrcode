@@ -65,11 +65,13 @@ class User extends Authenticatable
     public function qrcodes()
     {
         // return $this->hasMany('qrcodes_users','user_id','id');
+
+        // return $this->hasMany('qrcodes_users','user_id','id');
         return $this->belongsToMany(Qrcode::class,'qrcodes_users','user_id','qrcode_id');
     }
 
 
-    public function getAvatarAttribute()
+    public function getAvatarUrlAttribute()
     {
         $avatar = $this->attributes['avatar'] ?? null; // الوصول مباشرة إلى البيانات المخزنة
         if ($avatar && Str::startsWith($avatar, 'http')) {

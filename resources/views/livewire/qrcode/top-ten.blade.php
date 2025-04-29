@@ -61,7 +61,7 @@ new class extends Component {
         <div class="mt-20 bg-white shadow rounded-lg px-5 pt-[60px] pb-5 relative">
             <div class="">
                 <div class="flex items-center space-x-4">
-                    <img class="w-16 h-16 rounded-full" src="{{ auth()->user()->avatar }}" alt="User Avatar">
+                    <img class="w-16 h-16 rounded-full" src="{{ auth()->user()->avatar_url }}" alt="User Avatar">
                     <div>
                       <h3 class="text-lg font-semibold ">{{ auth()->user()->name }}</h3>
                       <p class="mt-2  flex gap-1">

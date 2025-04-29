@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Auth\PasswordValidationRules;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Password;
@@ -93,6 +94,8 @@ class User extends Resource
             
 
             BelongsToMany::make('qrcodes')
+
+            // HasMany::make('qrcodes')
             
 
         

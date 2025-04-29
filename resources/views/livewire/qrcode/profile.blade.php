@@ -30,7 +30,7 @@ new class extends Component {
         $this->email = Auth::user()->email;
         $this->phone =  Auth::user()->phone;
         $this->points =  Auth::user()->points;
-        $this->avatar = Auth::user()->avatar;
+        $this->avatar = Auth::user()->avatar_url;
         $this->avatarURL = $this->avatar;
         $this->age = Auth::user()->age;
     }   

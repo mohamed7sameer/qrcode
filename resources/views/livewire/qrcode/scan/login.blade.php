@@ -79,7 +79,8 @@ class extends Component {
             auth()->user()->increment('points', $qrcode->qCategory->points);
         });
 
-        auth()->user()->qrcodes()->sync([$qrcode->id]);
+        // auth()->user()->qrcodes()->sync([$qrcode->id]);
+        auth()->user()->qrcodes()->syncWithoutDetaching([$qrcode->id]);
         
         Qrcode::find($qrcode->id)->update([
             'status' => false
