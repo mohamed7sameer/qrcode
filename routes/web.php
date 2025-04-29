@@ -40,7 +40,8 @@ Route::middleware(config('nova.api_middleware'))->group(function () {
 
 });
 
-Volt::route('qrcode/scan/{uuid}','qrcode.scan')->name('qrcode.scan-qrcode');
+// Volt::route('qrcode/scan/{uuid}','qrcode.scan')->name('qrcode.scan-qrcode');
+Volt::route('qrcode/scan/{uuid}','qrcode.scan.all')->name('qrcode.scan-qrcode');
 
 
 // Volt::route('login','qrcode.login')->name('login');
