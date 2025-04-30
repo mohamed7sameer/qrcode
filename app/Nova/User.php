@@ -94,6 +94,7 @@ class User extends Resource
             
 
             BelongsToMany::make('qrcodes')
+            ->searchable()
 
             // HasMany::make('qrcodes')
             
