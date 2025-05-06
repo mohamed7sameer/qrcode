@@ -33,7 +33,7 @@ new class extends Component {
                             <div class="flex items-center space-x-4">
                             <span class="text-gray-500">{{ $key+1 }}</span>
                             <div class="flex-shrink-0">
-                                <img class="h-8 w-8 rounded-full" src="{{ $user->avatar }}" alt="User 1 Avatar">
+                                <img class="h-8 w-8 rounded-full" src="{{ $user->avatar_url }}" alt="User 1 Avatar">
                             </div>
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium  truncate">

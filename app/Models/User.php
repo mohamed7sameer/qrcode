@@ -73,14 +73,25 @@ class User extends Authenticatable
 
     public function getAvatarUrlAttribute()
     {
+
+        
+        
         $avatar = $this->attributes['avatar'] ?? null; // الوصول مباشرة إلى البيانات المخزنة
         if ($avatar && Str::startsWith($avatar, 'http')) {
+            dd($this->attributes['avatar']);
             return $avatar;
         }
-        return $avatar ? asset("storage/{$avatar}") : 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=7F9CF5&background=EBF4FF';
+
+
+       
+        if($avatar)
+        {
+            return asset("storage/{$avatar}");
+        }else{
+            return 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=7F9CF5&background=EBF4FF';
+        
+        }
     }
 
     
 }
-
-

@@ -13,13 +13,6 @@ use Laravel\Nova\Http\Middleware\HandleInertiaRequests;
 use Laravel\Nova\Nova;
 use Livewire\Volt\Volt;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// })->name('home');
-
-// Route::view('dashboard', 'dashboard')
-//     ->middleware(['auth', 'verified'])
-//     ->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('dashboard', '/')->name('dashboard');
@@ -40,16 +33,16 @@ Route::middleware(config('nova.api_middleware'))->group(function () {
 
 });
 
-// Volt::route('qrcode/scan/{uuid}','qrcode.scan')->name('qrcode.scan-qrcode');
-Volt::route('qrcode/scan/{uuid}','qrcode.scan.all')->name('qrcode.scan-qrcode');
+
+Volt::route('qrcode/scan/{uuid}','qrcode.scan.login')->name('qrcode.scan-qrcode');
+Volt::route('qrcode/scan/register/{uuid}','qrcode.scan.register')->name('qrcode.scan-qrcode.register');
 
 
-// Volt::route('login','qrcode.login')->name('login');
-// Volt::route('register','qrcode.login')->name('register');
-Volt::route('login','qrcode.auth.all')->name('login');
-Volt::route('register','qrcode.auth.all')->name('register');
 
-// Volt::route('all','qrcode.auth.all')->name('all');
+Volt::route('login','qrcode.auth.login')->name('login');
+Volt::route('register','qrcode.auth.register')->name('register');
+
+
 
 Route::post('logout', App\Livewire\Actions\Logout::class)
     ->name('logout');

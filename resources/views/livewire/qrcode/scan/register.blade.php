@@ -14,7 +14,7 @@ use App\Models\User ;
 use App\Models\Qrcode;
 
 new
-#[Layout('components.layouts.blank')]
+#[Layout('components.layouts.blank2')]
 class extends Component {
 
     
@@ -44,8 +44,10 @@ class extends Component {
     
     public $qrcode;
 
+    public $uuid ;
     public function mount($uuid)
     {
+        $this->uuid = $uuid ;
         $existQrcode = Qrcode::where([
             'uuid'=> $uuid,
             'status' => true
@@ -159,7 +161,7 @@ class extends Component {
  
 }; ?>
 
-<div class="flex flex-col gap-6">
+{{-- <div class="flex flex-col gap-6">
     
 
 
@@ -212,6 +214,98 @@ class extends Component {
 
         <flux:button type="submit" class="cursor-pointer" variant="primary">
             إشترك
+        </flux:button>
+
+        
+
+    </form>
+
+</div> --}}
+
+
+
+
+
+
+
+
+<div class="bg-transparent text-white w-full max-w-md px-7">
+
+    <h1 class="text-4xl  mb-2  md:text-left">Register</h1>
+
+    <p class="text-xs mb-6  text-white">
+        to get the chance to win iphone 16 & playstation five
+    </p>
+
+    <p class="text-lg mb-2 ">
+        Are you have Account ?
+        <a href="{{ route('qrcode.scan-qrcode',$uuid) }}" wire:navigate class="text-sm text-[#00c5d9] hover:underline font-semibold">Login now.</a>
+    </p>
+
+    <form wire:submit="regiter">
+        <div class="mb-5">
+            <div class="relative">
+                <span class="absolute left-0 top-1/2 transform -translate-y-1/2 h-full w-10 bg-[#00c5d9] text-white flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                    </svg>
+                </span>
+                <input
+                    type="text"
+                    wire:model="name"
+                    placeholder="Name"
+                    class="w-full p-3 pl-12 rounded-r-lg bg-gray-100 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                    
+                >
+            </div>
+            @error('name') <span class="error text-red-500" >{{ $message }}</span> @enderror
+        </div>
+        <div class="mb-5">
+            <div class="relative">
+                <span class="absolute left-0 top-1/2 transform -translate-y-1/2 h-full w-10 bg-[#00c5d9] text-white flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
+                </span>
+                <input
+                    type="tel"
+                    wire:model="phone"
+                    placeholder="Phone"
+                    class="w-full p-3 pl-12 rounded-r-lg bg-gray-100 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"        
+                >
+            </div>
+            @error('phone') <span class="error text-red-500" >{{ $message }}</span> @enderror
+        </div>
+        <div class="mb-5">
+            <div class="relative">
+                <span class="absolute left-0 top-1/2 transform -translate-y-1/2 h-full w-10 bg-[#00c5d9] text-white flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+                </span>
+                <input
+                    type="email"
+                    wire:model="email"
+                    placeholder="Email"
+                    class="w-full p-3 pl-12 rounded-r-lg bg-gray-100 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"        
+                >
+            </div>
+            @error('email') <span class="error text-red-500" >{{ $message }}</span> @enderror
+        </div>
+        <div class="mb-5">
+            <div class="relative">
+                <span class="absolute left-0 top-1/2 transform -translate-y-1/2 h-full w-10 bg-[#00c5d9] text-white flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 448 512"><path d="M128 0c17.7 0 32 14.3 32 32l0 32 128 0 0-32c0-17.7 14.3-32 32-32s32 14.3 32 32l0 32 48 0c26.5 0 48 21.5 48 48l0 48L0 160l0-48C0 85.5 21.5 64 48 64l48 0 0-32c0-17.7 14.3-32 32-32zM0 192l448 0 0 272c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 192zm64 80l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm128 0l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zM64 400l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zm112 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16z"/></svg>
+                </span>
+                <input
+                    type="text"
+                    type="number"
+                    placeholder="Age"
+                    class="w-full p-3 pl-12 rounded-r-lg bg-gray-100 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"        
+                >
+            </div>
+            @error('age') <span class="error text-red-500" >{{ $message }}</span> @enderror
+        </div>
+
+
+        <flux:button type="submit" class="cursor-pointer w-full bg-[#00c5d9] hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-200" variant="primary">
+            Create
         </flux:button>
 
         
