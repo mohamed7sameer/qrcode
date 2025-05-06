@@ -297,6 +297,7 @@ class extends Component {
                     type="text"
                     type="number"
                     placeholder="Age"
+                    wire:model="age"
                     class="w-full p-3 pl-12 rounded-r-lg bg-gray-100 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"        
                 >
             </div>
