@@ -78,7 +78,7 @@ class User extends Authenticatable
         
         $avatar = $this->attributes['avatar'] ?? null; // الوصول مباشرة إلى البيانات المخزنة
         if ($avatar && Str::startsWith($avatar, 'http')) {
-            dd($this->attributes['avatar']);
+            
             return $avatar;
         }
 
