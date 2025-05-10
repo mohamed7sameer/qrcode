@@ -14,7 +14,7 @@
         font-optical-sizing: auto;
         /* font-weight: 400; */
         font-style: normal;
-        }
+        } 
         </style>
     </head>
     <body style="background:url('{{ asset('assets/images/bg.webp') }}') center; background-size: cover;" class="rubik-400  min-h-screen">

@@ -1,16 +1,28 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl" >
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="ltr" >
     <head>
         @include('partials.head')
+
+        <Style>
+
+            
+
+            [data-flux-main] {
+                margin: 0 !important;
+                padding: 0 !important;
+                
+            }
+        </Style>
+=
     </head>
-    <body class="min-h-screen bg-gray-200 rubik-400">
+    <body   style="background:url('{{ asset('assets/images/bg.webp') }}') center; background-size: cover; display: block;" class="rubik-400  min-h-screen ">
         
 
 
 
 
 
-        <flux:sidebar sticky stashable class="border-e border-cyan-600 bg-cyan-700 dark ">
+        <flux:sidebar sticky stashable class="border-e border-red-800 bg-[#A22929] dark ">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
             <a href="/" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
@@ -98,7 +110,50 @@
 
 
 
-        {{ $slot }}
+    <flux:main>
+
+
+
+        <div class="mt-5 mb-2 w-70 mx-w-full m-auto">
+            <img src="{{ asset('assets/images/top-2.png') }}" class="w-full">
+        </div>
+        <p class="text-lg text-bold text-center text-white mb-5">8 YEARS ANNIVERSARY</p>
+
+
+    
+
+
+
+        <div class="px-5">
+            {{ $slot }}
+        </div>
+
+
+
+
+
+        <div class="pt-10 pb-5">
+            <img src="{{ asset('assets/images/bottom2.png') }}" class="w-full mb-5">
+        </div>
+
+        <div class="bg-[#ffdddd] flex justify-center items-center gap-2 py-2" >
+            <a href="#"><img class="w-[30px]"  src="{{ asset('assets/images/call/telephone.svg') }}" alt=""></a>
+            <a href="#"><img class="w-[30px]"  src="{{ asset('assets/images/call/linkedin.svg') }}" alt=""></a>
+            <a href="#"><img class="w-[30px]"  src="{{ asset('assets/images/call/facebook.svg') }}" alt=""></a>
+            <a href="#"><img class="w-[30px]"  src="{{ asset('assets/images/call/instagram.svg') }}" alt=""></a>
+            
+        </div>
+
+        <div class="pt-10 pb-5 w-50 m-auto max-w-full ">
+            <img src="{{ asset('assets/images/prisma2.png') }}" class="w-full ">
+        </div>
+
+
+        
+
+
+
+    </flux:main>
 
 
 
@@ -115,3 +170,11 @@
         @fluxScripts
     </body>
 </html>
+
+
+
+
+
+
+
+

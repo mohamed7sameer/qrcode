@@ -16,9 +16,9 @@ use Livewire\Volt\Volt;
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('dashboard', '/')->name('dashboard');
-    Volt::route('/','qrcode.profile')->name('home');
+    Volt::route('/','qrcode.home')->name('home');
     
-    Volt::route('/top-users','qrcode.top-ten')->name('top.users');
+    Volt::route('/setting','qrcode.setting')->name('q.setting');
     
 });
 
